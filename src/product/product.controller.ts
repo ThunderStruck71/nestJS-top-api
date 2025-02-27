@@ -1,22 +1,22 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ProductModel } from './product.model';
 import { FindProductDto } from './dto/find-product.dto';
+import { SuccessResponse } from 'src/helpers/success.response';
+import { SaveProductDto } from './dto/save-product.dto';
+import { DeleteProductDto } from './dto/delete-product.dto';
 
 @Controller('product')
 export class ProductController {
-	@Post('create')
-	async create(@Body() dto: Omit<ProductModel, '_id'>) {}
+	@Get('get/:id')
+	async get(@Param('id') id: string): Promise<ProductModel> {}
 
-	@Get(':id')
-	async get(@Param('id') id: string) {}
+	@Post('find')
+	async getByCategory(@Body() dto: FindProductDto): Promise<ProductModel[]> {}
+	
+	@Post('save')
+	async save(@Body() dto: SaveProductDto): Promise<ProductModel> {}
 
-	@Delete(':id')
-	async delete(@Param('id') id: string) {}
+	@Delete('delete')
+	async delete(@Body() dto: DeleteProductDto): Promise<SuccessResponse> {}
 
-	@Patch(':id')
-	async patch(@Param('id') id: string, @Body() dto: ProductModel) {}
-
-	@HttpCode(200)
-	@Post()
-	async find(@Body() dto: FindProductDto) {}
 }
