@@ -27,10 +27,11 @@ export default tseslint.config(
   },
   {
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-floating-promises': 'off',
-      '@typescript-eslint/require-await': 'off',
-      '@typescript-eslint/no-unsafe-argument': 'warn',
+      '@typescript-eslint/ban-types': 'off',
+			'@typescript-eslint/no-unused-vars': ['off'],
+			'@typescript-eslint/no-explicit-any': 'off',
+			'@typescript-eslint/explicit-function-return-type': ['warn'],
+			'@typescript-eslint/no-empty-object-type': 'off',
       'prettier/prettier': [
         'error',
         {
