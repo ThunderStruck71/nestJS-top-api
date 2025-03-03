@@ -14,6 +14,7 @@ import { CreateReviewDto } from './dto/create-review.dto';
 import { ReviewService } from './review.service';
 import { REVIEW_NOT_FOUND } from './constants/review.constants';
 import { ReviewModel } from './review.model';
+import { DeleteResult } from 'mongoose';
 
 @Controller('review')
 export class ReviewController {
@@ -26,7 +27,7 @@ export class ReviewController {
 	}
 
 	@Delete(':id')
-	async delete(@Param('id') id: string) {
+	async delete(@Param('id') id: string): Promise<void> {
 		const deletedReview = await this.reviewService.delete(id);
 		if (!deletedReview) {
 			throw new HttpException(REVIEW_NOT_FOUND, HttpStatus.NOT_FOUND);
@@ -34,12 +35,12 @@ export class ReviewController {
 	}
 
 	@Get('byProduct/:productId')
-	async getByProduct(@Param('productId') productId: string) {
+	async getByProduct(@Param('productId') productId: string): Promise<ReviewModel[]> {
 		return await this.reviewService.findByProductId(productId);
 	}
 
 	@Delete('byProduct/:productId')
-	async deleteByProduct(@Param('productId') productId: string) {
+	async deleteByProduct(@Param('productId') productId: string): Promise<DeleteResult> {
 		return await this.reviewService.deleteByProductId(productId);
 	}
 }
