@@ -5,6 +5,7 @@ import { AppModule } from './../src/app.module';
 import { CreateReviewDto } from '../src/review/dto/create-review.dto';
 import { disconnect, Types } from 'mongoose';
 import { REVIEW_NOT_FOUND } from '../src/review/constants/review.constants';
+import { Server } from 'net';
 
 const productId = new Types.ObjectId().toHexString();
 
@@ -17,7 +18,7 @@ const createdReviewDto: CreateReviewDto = {
 };
 
 describe('AppController (e2e)', () => {
-	let app: INestApplication;
+	let app: INestApplication<Server>;
 	let createdReviewId: string;
 
 	beforeEach(async () => {
