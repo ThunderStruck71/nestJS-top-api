@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 
-export const getMongoConfig = async (configService: ConfigService) => ({
+export const getMongoConfig = (configService: ConfigService) => ({
 	uri: getMongoString(configService),
 });
 
