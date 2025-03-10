@@ -7,6 +7,7 @@ import { genSalt, hash } from 'bcryptjs';
 import { USER_NOT_FOUND_ERROR, WRONG_PASSWORD_ERROR } from './constants/auth.constants';
 import { compare } from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
+import { AuthResponse } from './dto/auth.response';
 
 @Injectable()
 export class AuthService {
@@ -43,7 +44,7 @@ export class AuthService {
 		return { email: user.email };
 	}
 
-	async login(email: string) {
+	async login(email: string): Promise<AuthResponse> {
 		const payload = { email };
 		return {
 			access_token: await this.jwtService.signAsync(payload),
