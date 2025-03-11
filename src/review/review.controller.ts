@@ -16,7 +16,7 @@ import { ReviewService } from './review.service';
 import { REVIEW_NOT_FOUND } from './constants/review.constants';
 import { ReviewModel } from './review.model';
 import { DeleteResult } from 'mongoose';
-import { JwtAuthGuard } from '../../src/auth/guards/jwt.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 
 @Controller('review')
 export class ReviewController {
