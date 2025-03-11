@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { AppModule } from '../src/app.module';
 import { CreateReviewDto } from '../src/review/dto/create-review.dto';
 import { disconnect, Types } from 'mongoose';
 import { REVIEW_NOT_FOUND } from '../src/review/constants/review.constants';
 import { Server } from 'net';
-import { AuthDto } from 'src/auth/dto/auth.dto';
-import { AuthResponse } from 'src/auth/dto/auth.response';
+import { AuthDto } from '../src/auth/dto/auth.dto';
+import { AuthResponse } from '../src/auth/dto/auth.response';
 
 const productId = new Types.ObjectId().toHexString();
 
@@ -24,7 +24,7 @@ const createdReviewDto: CreateReviewDto = {
 	productId,
 };
 
-describe('AppController (e2e)', () => {
+describe('Review Controller (e2e)', () => {
 	let app: INestApplication<Server>;
 	let createdReviewId: string;
 	let token: string;
