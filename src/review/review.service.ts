@@ -17,7 +17,7 @@ export class ReviewService {
 	}
 
 	async delete(id: string) {
-		return await this.reviewModel.findByIdAndDelete(id).exec();
+		return await this.reviewModel.findByIdAndDelete({ id: new Types.ObjectId(id) }).exec();
 	}
 
 	async findByProductId(productId: string) {
