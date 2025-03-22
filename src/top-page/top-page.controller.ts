@@ -14,6 +14,7 @@ import { FindTopPageDto } from './dto/find-top-page.dto';
 import { CreateTopPageDto } from './dto/create-top-page.dto';
 import { TopPageService } from './top-page.service';
 import { TOP_PAGE_NOT_FOUND } from './constants/top-page.constants';
+import { IdValidationPipe } from 'src/pipes/id-validation.pipe';
 
 @Controller('top-page')
 export class TopPageController {
@@ -25,7 +26,7 @@ export class TopPageController {
 	}
 
 	@Get(':id')
-	async get(@Param('id') id: string) {
+	async get(@Param('id', IdValidationPipe) id: string) {
 		const topPage = await this.topPageService.findById(id);
 		if (!topPage) {
 			throw new NotFoundException(TOP_PAGE_NOT_FOUND);
@@ -34,7 +35,7 @@ export class TopPageController {
 	}
 
 	@Delete(':id')
-	async delete(@Param('id') id: string) {
+	async delete(@Param('id', IdValidationPipe) id: string) {
 		const deletedPage = await this.topPageService.deleteById(id);
 		if (!deletedPage) {
 			throw new NotFoundException(TOP_PAGE_NOT_FOUND);
@@ -42,7 +43,7 @@ export class TopPageController {
 	}
 
 	@Patch(':id')
-	async patch(@Param('id') id: string, @Body() dto: TopPageModel) {
+	async patch(@Param('id', IdValidationPipe) id: string, @Body() dto: TopPageModel) {
 		const topPage = await this.topPageService.update(id, dto);
 		if (!topPage) {
 			throw new NotFoundException(TOP_PAGE_NOT_FOUND);
