@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { FileElementResponse } from './dto/file-element.response';
 import { format } from 'date-fns';
 import { path } from 'app-root-path';
-import { ensureDir, exists, writeFile } from 'fs-extra';
+import { ensureDir, writeFile } from 'fs-extra';
 import * as sharp from 'sharp';
 import { MFile } from './dto/mfile.class';
 
