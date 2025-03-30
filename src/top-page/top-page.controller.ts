@@ -90,7 +90,16 @@ export class TopPageController {
 		for (const page of data) {
 			const hhData = await this.hhService.getData(page.category);
 			page.hh = hhData;
+			await this.sleep();
 			await this.topPageService.update(page._id, page);
 		}
+	}
+
+	sleep() {
+		return new Promise<void>((resolve, reject) => {
+			setTimeout(() => {
+				resolve();
+			}, 1000);
+		});
 	}
 }
