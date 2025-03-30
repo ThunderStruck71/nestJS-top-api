@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { TopLevelCategory, TopPageDocument, TopPageModel } from './top-page.model';
 import { Model } from 'mongoose';
 import { CreateTopPageDto } from './dto/create-top-page.dto';
+import { subDays } from 'date-fns';
 
 @Injectable()
 export class TopPageService {
@@ -54,5 +55,11 @@ export class TopPageService {
 
 	async findByText(text: string) {
 		return this.topPageModel.find({ $text: { $search: text, $caseSensitive: false } }).exec();
+	}
+
+	async findForHhUpdate(date: Date) {
+		return this.topPageModel
+			.find({ firstCategory: TopLevelCategory.Courses, 'hh.updatedAt': { $lt: subDays(date, 1) } })
+			.exec();
 	}
 }

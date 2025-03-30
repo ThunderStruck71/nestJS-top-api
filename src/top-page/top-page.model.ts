@@ -19,6 +19,8 @@ class HhData {
 	middleSalary: number;
 	@Prop()
 	seniorSalary: number;
+	@Prop()
+	updatedAt: Date;
 }
 
 class TopPageAdvantage {
