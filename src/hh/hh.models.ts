@@ -1,9 +1,9 @@
-export interface Root {
+export interface HhResponse {
 	arguments: Argument[];
-	clusters: any;
+	clusters: Cluster[];
 	fixes: any;
 	found: number;
-	items: Item[];
+	items: Vacancy[];
 	page: number;
 	pages: number;
 	per_page: number;
@@ -20,12 +20,24 @@ export interface Argument {
 	metro_type?: string;
 }
 
+export interface Cluster {
+	name: string;
+	id: string;
+	items: ClusterElement[];
+}
+
+export interface ClusterElement {
+	name: string;
+	url: string;
+	count: number;
+}
+
 export interface ClusterGroup {
 	id: string;
 	name: string;
 }
 
-export interface Item {
+export interface Vacancy {
 	accept_incomplete_resumes: boolean;
 	address: Address;
 	alternate_url: string;
