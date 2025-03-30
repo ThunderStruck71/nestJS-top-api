@@ -10,7 +10,7 @@ export enum TopLevelCategory {
 
 export type TopPageDocument = HydratedDocument<TopPageModel>;
 
-class HhData {
+export class HhData {
 	@Prop()
 	count: number;
 	@Prop()
