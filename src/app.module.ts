@@ -11,6 +11,7 @@ import { SitemapModule } from './sitemap/sitemap.module';
 import { TelegramModule } from './telegram/telegram.module';
 import { getTelegramConfig } from './configs/telegram.config';
 import { HhModule } from './hh/hh.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
 	imports: [
@@ -32,6 +33,7 @@ import { HhModule } from './hh/hh.module';
 			useFactory: getTelegramConfig,
 		}),
 		HhModule,
+		ScheduleModule.forRoot(),
 	],
 })
 export class AppModule {}
